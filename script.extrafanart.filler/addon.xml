@@ -1,0 +1,51 @@
+<addon id="script.extrafanart.filler"
+       name="ExtraFanart Filler"
+       version="0.5.0"
+       provider-name="sfontes">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0" />
+    </requires>
+    <extension point="xbmc.python.script" library="script.py">
+      <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="startup"/>
+    <extension point="kodi.context.item">
+      <menu id="kodi.core.main">
+        <item library="contextitem.py">
+          <label>30204</label>
+          <visible>String.IsEqual(Window(Home).Property(script.extrafanart.filler.enable_contextmenu),True) +
+            [String.IsEqual(ListItem.DBtype,movie) | 
+            String.IsEqual(ListItem.DBtype,tvshow) | 
+            String.IsEqual(ListItem.DBtype,set)]</visible>
+        </item>
+      </menu>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+      <summary lang="en_GB">Fills in extrafanart URLs for Movies, Movie Sets, and TV shows.</summary>
+      <description lang="en_GB">
+This addon scans Movies, TV Shows, and Movie Sets and fills in the extrafanart artwork slots (fanart1, fanart2, fanart3, ...) with urls from online artwork providers. For each item, the addon queries fanart.tv and themoviedb.org using the API keys provided in the addon settings. No images are downloaded; only the URLs returned by the providers are stored in the Kodi database. You can configure the maximum number of images to fill in per item.
+A context menu option is available to fill fanart for a single Movie, TV Show, or Movie Set. 
+Fanart is used in the order returned by the providers: all available artwork from fanart.tv is used first, followed by artwork from themoviedb.org. The addon does not attempt to rate, filter, or reorder images.
+Results from online queries are cached. Once an item has been scanned, only the fanart available at the time of the original query will be used. New queries are performed only for Movies, TV Shows, and Movie Sets added since the last scan. A setting is provided to clear the cache in order to get new artwork urls for a previously scanned media item.
+</description>
+      <disclaimer lang="en_GB">This addon fills in artwork URLs. It does not download images.</disclaimer>
+      <platform>all</platform>
+      <license>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</license>
+      <forum>https://forum.kodi.tv/showthread.php?tid=xxxxxx</forum>
+      <source>https://github.com/smfontes/kodi.extrafanart.filler</source>
+      <assets>
+        <icon>resources/icon.png</icon>
+        <fanart>resources/fanart.png</fanart>
+        <banner>resources/banner.png</banner>
+        <clearlogo>resources/clearlogo.png</clearlogo>
+        <screenshot>resources/screenshotsettings.png</screenshot>
+        <screenshot>resources/screenshotrun.png</screenshot>
+        <screenshot>resources/screenshotscanLog.png</screenshot>
+        <screenshot>resources/screenshotcontextmenulog.png</screenshot>
+      </assets>
+      <news>
+        0.5.0 
+         - First release
+      </news>
+    </extension>
+</addon>

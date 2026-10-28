@@ -1,0 +1,196 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: script.extrafanart.filler\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-15 00:00+0000\n"
+"PO-Revision-Date: 2026-10-15 00:00+0000\n"
+"Last-Translator: sfontes\n"
+"Language-Team: English\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#==============================
+# Settings labels and help text
+#===============================
+msgctxt "#30000"
+msgid "Settings"
+msgstr "Settings"
+
+msgctxt "#30100"
+msgid "At least one API key for artwork providers is required. Both required for movie sets"
+msgstr "At least one API key for artwork providers is required. Both required for movie sets"
+
+msgctxt "#30001"
+msgid "Fanart.tv API Key"
+msgstr "Fanart.tv API Key"
+
+msgctxt "#30101"
+msgid "Enter your Fanart.tv personal API key (required for full function)"
+msgstr "Enter your Fanart.tv personal API key (required for full function)"
+
+msgctxt "#30002"
+msgid "TMDB API Key"
+msgstr "TMDB API Key"
+
+msgctxt "#30102"
+msgid "Enter your TMDB API key  (required for full function)"
+msgstr "Enter your TMDB API key  (required for full function)"
+
+msgctxt "#30003"
+msgid "Maximum extrafanart images"
+msgstr "Maximum extrafanart images"
+
+msgctxt "#30103"
+msgid "Number (N) of fanart slots to fill (fanart1, fanart2, ..., fanartN)"
+msgstr "Number (N) of fanart slots to fill (fanart1, fanart2, ..., fanartN)"
+
+msgctxt "#30004"
+msgid "Scan Movies"
+msgstr "Scan Movies"
+
+msgctxt "#30104"
+msgid "Enable to search for extrafanart for Movies"
+msgstr "Enable to search for extrafanart for Movies"
+
+msgctxt "#30005"
+msgid "Scan TV Shows"
+msgstr "Scan TV Shows"
+
+msgctxt "#30105"
+msgid "Enable to search for extrafanart for TV Shows"
+msgstr "Enable to search for extrafanart for TV Shows"
+
+msgctxt "#30006"
+msgid "Scan Movie Sets"
+msgstr "Scan Movie Sets"
+
+msgctxt "#30106"
+msgid "Enable to search for extrafanart for Movie Sets"
+msgstr "Enable to search for extrafanart for Movie Sets"
+
+msgctxt "#30007"
+msgid "Dry run mode"
+msgstr "Dry run mode"
+
+msgctxt "#30107"
+msgid "Runs the process to fill in fanart without actually modifying artwork in the Kodi database."
+msgstr "Runs the process to fill in fanart without actually modifying artwork in the Kodi database."
+
+msgctxt "#30008"
+msgid "Enable verbose logging"
+msgstr "Enable verbose logging"
+
+msgctxt "#30108"
+msgid "Writes detailed diagnostic information to the Kodi log."
+msgstr "Writes detailed diagnostic information to the Kodi log."
+
+msgctxt "#30009"
+msgid "Enable context menu"
+msgstr "Enable context menu"
+
+msgctxt "#30109"
+msgid "Adds a context menu option to fill in extrafanart for the selected Movie, Movie Set, or TV Show."
+msgstr "Adds a context menu option to fill in extrafanart for the selected Movie, Movie Set, or TV Show."
+
+msgctxt "#30010"
+msgid "Rate limit calls to fanart providers"
+msgstr "Rate limit calls to fanart providers"
+
+msgctxt "#30110"
+msgid "Adds a delay between provider requests to reduce throttling or temporary failures."
+msgstr "Adds a delay between provider requests to reduce throttling or temporary failures."
+
+#==============
+# Menu Items
+#=============
+msgctxt "#30200"
+msgid "Run extrafanart scan"
+msgstr "Run extrafanart scan"
+
+msgctxt "#30201"
+msgid "View last log"
+msgstr "View last log"
+
+msgctxt "#30202"
+msgid "Configure"
+msgstr "Configure"
+
+msgctxt "#30203"
+msgid "Clear cache"
+msgstr "Clear cache"
+
+msgctxt "#30204"
+msgid "Fill in Extra Fanart"
+msgstr "Fill in Extra Fanart"
+
+#==============
+# Progress Bar
+#==============
+msgctxt "#30300"
+msgid "Fetching"
+msgstr "Fetching"
+
+msgctxt "#30301"
+msgid "Processing"
+msgstr "Processing"
+
+msgctxt "#30302"
+msgid "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                            Loading log. Please wait, this may take a while."
+msgstr "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                            Loading log. Please wait, this may take a while."
+
+#==============
+# Notifications
+#==============
+msgctxt "#30400"
+msgid "{0} artworks filled in"
+msgstr "{0} artworks filled in"
+
+msgctxt "#30401"
+msgid "Cache cleared"
+msgstr "Cache cleared"
+
+msgctxt "#30402"
+msgid "Error clearing cache"
+msgstr "Error clearing cache"
+
+msgctxt "#30403"
+msgid "An operation is already running"
+msgstr "An operation is already running"
+
+#=======
+# Errors
+#=======
+
+msgctxt "#30901"
+msgid "{0} Auth Error. Likely cause is invalid API key in settings."
+msgstr "{0} Auth Error. Likely cause is invalid API key in settings."
+
+msgctxt "#30902"
+msgid "{0} Http Error {1}. {2}."
+msgstr "{0} Http Error {1}. {2}."
+
+msgctxt "#30903"
+msgid "Network Error for {0}."
+msgstr "Network Error for {0}."
+
+msgctxt "#30904"
+msgid "{0} not available and cache empty. {0} will not be used"
+msgstr "{0} not available and cache empty. {0} will not be used"
+
+msgctxt "#30905"
+msgid "{0} not available. Only cache will be used"
+msgstr "{0} not available. Only cache will be used"
+
+msgctxt "#30906"
+msgid "No providers available, ExtraFanart Filler stopped"
+msgstr "No providers available, ExtraFanart Filler stopped"
+
+msgctxt "#30907"
+msgid "Movie sets will not be scanned"
+msgstr "Movie sets will not be scanned"
+
+msgctxt "#30908"
+msgid "Movie sets require both providers, ExtraFanart Filler stopped"
+msgstr "Movie sets require both providers, ExtraFanart Filler stopped"
