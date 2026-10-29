@@ -22,7 +22,8 @@
     </extension>
     <extension point="xbmc.addon.metadata">
       <summary lang="en_GB">Fills extrafanart (fanart1, fanart2, …) for Movies, TV Shows, and Movie Sets.</summary>
-      <description lang="en_GB">This addon scans Movies, TV Shows, and Movie Sets and fills the extrafanart slots (fanart1, fanart2, fanart3, …). It reuses the remote fanart URLs already scraped by Kodi, copying them from the available fanart artwork into the individual fanart<i> entries. Existing extrafanart is not overwritten. The addon also provides a context menu item to fill in extrafanart for individual Movies, TV Shows, or Movie Sets.
+      <description lang="en_GB">
+        This addon scans Movies, TV Shows, and Movie Sets and fills the extrafanart slots (fanart1, fanart2, fanart3, …). It reuses the remote fanart URLs already scraped by Kodi, copying them from the available fanart artwork into the individual fanart[i] entries. Existing extrafanart is not overwritten. The addon also provides a context menu item to fill in extrafanart for individual Movies, TV Shows, or Movie Sets.
       </description>
       <disclaimer lang="en_GB">This addon fills in artwork URLs. It does not download images.</disclaimer>
       <platform>all</platform>
