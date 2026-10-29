@@ -34,8 +34,8 @@ class AddonLog:
             f.write(self.prefix+f"========== Max images to fill in per media item: {max_slots} ==============\n")
             f.write(self.prefix+f"Started: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
 
-    def start_item(self, log_label, title, tmdb_id, tvdb_id):
-        text = f" ┌[{log_label}] {title} | TMDB={tmdb_id} TVDB={tvdb_id}"
+    def start_item(self, log_label, title):
+        text = f" ┌[{log_label}] {title}"
         with open(LOG_FILE, "a", encoding="utf-8") as f:
             f.write(text + "\n")
             
@@ -44,7 +44,7 @@ class AddonLog:
         with open(LOG_FILE, "a", encoding="utf-8") as f:
             f.write(text + "\n")
 
-    def end_item(self, log_label, title, tmdb_id, tvdb_id, num_existing, found, duplicate, filled_in):
+    def end_item(self, log_label, title, num_existing, found, duplicate, filled_in):
         text = f" └[{log_label}] {title} | existing={num_existing} | found={found} | duplicate={duplicate} | filled={filled_in}"
         with open(LOG_FILE, "a", encoding="utf-8") as f:
             f.write(text + "\n")
@@ -58,13 +58,10 @@ class AddonLog:
             f.write("\n")
             f.write(self.prefix+"Summary\n")
             f.write(self.prefix+"-------\n")
-            f.write(self.prefix+f"Movies processed: {processed[Key.MOVIE]}\n")
-            f.write(self.prefix+f"TV shows processed: {processed[Key.TV]}\n")
-            f.write(self.prefix+f"Movie Sets processed: {processed[Key.SET]}\n")
-            f.write(self.prefix+f"Total media items processed: {processed[Key.MOVIE]+processed[Key.TV]+processed[Key.SET]}\n")
-            f.write(self.prefix+f"Movie Fanarts filled: {filled_in[Key.MOVIE]}\n")
-            f.write(self.prefix+f"TV Show Fanarts filled: {filled_in[Key.TV]}\n")
-            f.write(self.prefix+f"Movie Set Fanarts filled: {filled_in[Key.SET]}\n")
+            f.write(self.prefix+f"Movies processed: {processed[Key.MOVIE]}, Fanarts filled: {filled_in[Key.MOVIE]}\n")
+            f.write(self.prefix+f"TV shows processed: {processed[Key.TV]}, Fanarts filled: {filled_in[Key.TV]}\n")
+            f.write(self.prefix+f"Movie Sets processed: {processed[Key.SET]}, Fanarts filled: {filled_in[Key.SET]}\n")
+            f.write(self.prefix+f"Total processed: {processed[Key.MOVIE]+processed[Key.TV]+processed[Key.SET]}\n")
             f.write(self.prefix+f"Total fanarts filled: {filled_in[Key.MOVIE]+filled_in[Key.TV]+filled_in[Key.SET]}\n")
             f.write(self.prefix+f"Finished: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
 

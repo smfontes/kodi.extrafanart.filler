@@ -12,7 +12,7 @@
     <extension point="kodi.context.item">
       <menu id="kodi.core.main">
         <item library="contextitem.py">
-          <label>30204</label>
+          <label>30203</label>
           <visible>String.IsEqual(Window(Home).Property(script.extrafanart.filler.enable_contextmenu),True) +
             [String.IsEqual(ListItem.DBtype,movie) | 
             String.IsEqual(ListItem.DBtype,tvshow) | 
@@ -31,7 +31,7 @@ Results from online queries are cached. Once an item has been scanned, only the 
       <disclaimer lang="en_GB">This addon fills in artwork URLs. It does not download images.</disclaimer>
       <platform>all</platform>
       <license>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</license>
-      <forum>https://forum.kodi.tv/showthread.php?tid=xxxxxx</forum>
+      <forum>https://forum.kodi.tv/showthread.php?tid=??????</forum>
       <source>https://github.com/smfontes/kodi.extrafanart.filler</source>
       <assets>
         <icon>resources/icon.png</icon>

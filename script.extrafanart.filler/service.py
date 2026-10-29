@@ -6,7 +6,6 @@ from resources.lib.log_kodi import debug, info, warn, error
 from resources.lib.thread_fill_all import WorkerFillAll
 from resources.lib.thread_fill_selected import WorkerFillSelected
 from resources.lib.lockmanager import acquire_lock, release_lock
-from resources.lib import db_cache
 from resources.lib.constants import Sender, Window, Setting
 
 class ExtrafanartService(xbmc.Monitor):
@@ -18,7 +17,7 @@ class ExtrafanartService(xbmc.Monitor):
         if not acquire_lock(show_notification=True):
             debug("Cannot start scan — lock is active")
             return
-        debug("Starting ScanWorker")
+        debug("Starting thread to scan media items")
         self.worker = WorkerFillAll()
         self.worker.start()
         # Worker will release lock when finished
@@ -27,34 +26,14 @@ class ExtrafanartService(xbmc.Monitor):
         if not acquire_lock(show_notification=True):
             debug("Cannot fill in fanart — lock is active")
             return
-        debug("Starting WorkerFillSelected")
+        debug("Starting thread for context menu operation")
         self.worker = WorkerFillSelected()
         self.worker.start()
         # Worker will release lock when finished
 
-    def clear_cache(self):
-        if not acquire_lock(show_notification=True):
-            debug("Cannot clear cache — lock is active")
-            return
-        try:
-            debug("Clearing cache")
-            db_cache.clear_cache()
-            debug("Cache cleared")
-        except Exception as e:
-            debug(f"Cache clear error: {e}")
-        finally:
-            release_lock()
-
     def onNotification(self, sender, method, data):
         if sender == Sender.SCRIPT_SENDER:
-            method = method.partition('.')[2] # Strip Kodi "Other." prefix
-            debug(f"Received command: {method}")
-            if method == Sender.SCRIPT_SCAN_OPERATION:
-                self.start_scan()
-            elif method == Sender.SCRIPT_CLEAR_CACHE_OPERATION:
-                self.clear_cache()
-            else:
-                debug(f"Unknown command: {method}")
+            self.start_scan()
         elif sender == Sender.CONTEXT_MENU_SENDER:
             self.start_fill()
 

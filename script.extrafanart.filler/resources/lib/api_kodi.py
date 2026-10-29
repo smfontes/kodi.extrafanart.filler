@@ -13,38 +13,41 @@ def rpc(payload):
 
 def get_movies():
     payload = {"method": "VideoLibrary.GetMovies",
-               "params": {"properties": [Key.UNIQUEID, Key.ART, Key.TITLE]}}
+               "params": {"properties": [Key.ART, Key.TITLE]}}
     return rpc(payload).get("result", {}).get("movies", [])
 
 def get_tvshows():
     payload = {"method": "VideoLibrary.GetTVShows",
-               "params": {"properties": [Key.UNIQUEID, Key.ART, Key.TITLE]}}
+               "params": {"properties": [Key.ART, Key.TITLE]}}
     return rpc(payload).get("result", {}).get("tvshows", [])
 
 def get_moviesets():
     payload = {"method": "VideoLibrary.GetMovieSets",
-               "params": {"properties": [Key.TITLE, Key.ART]}}
+               "params": {"properties": [Key.ART, Key.TITLE]}}
     return rpc(payload).get("result", {}).get("sets", {})
 
-def get_movie_details(movieid):
+def get_movie_art(movieid):
     payload = {"method": "VideoLibrary.GetMovieDetails",
-               "params": {"movieid": movieid, "properties": [Key.UNIQUEID, Key.ART]}}
-    return rpc(payload).get("result", {}).get("moviedetails", {})
+               "params": {"movieid": movieid, "properties": [Key.ART]}}
+    return rpc(payload).get("result", {}).get("moviedetails", {}).get("art",{})
 
-def get_tvshow_details(tvshowid):
+def get_tvshow_art(tvshowid):
     payload = {"method": "VideoLibrary.GetTVShowDetails", 
-               "params": {"tvshowid": tvshowid, "properties": [Key.UNIQUEID, Key.ART]}}
-    return rpc(payload).get("result", {}).get("tvshowdetails", {})
+               "params": {"tvshowid": tvshowid, "properties": [Key.ART]}}
+    return rpc(payload).get("result", {}).get("tvshowdetails", {}).get("art",{})
 
-def get_movieset_details(setid):
+def get_movieset_art(setid):
     payload = {"method": "VideoLibrary.GetMovieSetDetails",
-               "params": {"setid": setid, "properties": [Key.TITLE, Key.ART]}}
-    return rpc(payload).get("result", {}).get("setdetails", {})    
+               "params": {"setid": setid, "properties": [Key.ART]}}
+    return rpc(payload).get("result", {}).get("setdetails", {}).get("art",{})    
 
-def get_movies_in_set(setid):
-    payload = {"method": "VideoLibrary.GetMovies",
-               "params": {"filter": {"setid": setid},"properties": [Key.UNIQUEID, Key.TITLE]}}
-    return rpc(payload).get("result", {}).get("movies", [])
+def get_available_fanart(fullitem):
+    item = {fullitem[Key.TYPE]: fullitem[Key.ID]}
+    payload = {"method": "VideoLibrary.GetAvailableArt",
+               "params": {"item": item, "arttype": 'fanart'}}
+    result = rpc(payload)
+    urls = [art["url"] for art in result["result"]["availableart"]]
+    return urls
 
 def set_movie_art(movieid, art_dict):
     payload = {"method": "VideoLibrary.SetMovieDetails",

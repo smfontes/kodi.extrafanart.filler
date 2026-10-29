@@ -2,9 +2,10 @@ import os
 import xbmcvfs
 import xbmc
 import xbmcgui
-import xbmcaddon
 from pathlib import Path
 from resources.lib.constants import Addon, Localize
+from resources.lib.log_kodi import debug, info, warn, error
+
 
 LOCK_PATH = Path(xbmcvfs.translatePath(Addon.PROFILE))
 LOCK_FILE = str(LOCK_PATH / "lock")
@@ -19,9 +20,6 @@ def acquire_lock(show_notification=True):
     f.write(b"locked\n")
     f.close()
     return True
-
-def is_locked():
-    return xbmcvfs.exists(LOCK_FILE)
 
 def release_lock():
     try:

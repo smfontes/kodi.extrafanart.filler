@@ -2,69 +2,51 @@
     <section id="script.extrafanart.filler">
         <category id="1" label="30000" help="30100">
             <group id="1">
-                <setting id="fanarttv_api_key" label="30001" help="30101" type="string">
-                    <description>Fanart.tv API Key</description>
-                    <level>0</level>
-                    <default>https://fanart.tv/get-an-api-key/</default>
-                    <control type="edit" format="string" />
-                </setting>
-                <setting id="tmdb_api_key" label="30002" help="30102" type="string">
-                    <description>TMDB API Key</description>
-                    <level>0</level>
-                    <default>https://developer.themoviedb.org/docs/getting-started</default>
-                    <control type="edit" format="string" />
-                </setting>
-                <setting id="max_slots" label="30003" help="30103" type="integer">
+                <setting id="max_slots" label="30001" help="30101" type="integer">
                     <description>Maximum number of extrafanart images to fill in</description>
                     <level>0</level>
                     <default>4</default>
                     <control type="spinner" format="integer" />
                     <constraints>
                         <minimum>1</minimum>
-                        <maximum>20</maximum>
+                        <maximum>99</maximum>
                         <step>1</step>
                     </constraints>
                 </setting>
-                <setting id="scan_movies" label="30004" help="30104" type="boolean">
+                <setting id="scan_movies" label="30002" help="30102" type="boolean">
                     <description>Enable Movie scanning</description>
                     <level>0</level>
                     <default>true</default>
                     <control type="toggle" />
                 </setting>
-                <setting id="scan_tv_shows" label="30005" help="30105" type="boolean">
+                <setting id="scan_tv_shows" label="30003" help="30103" type="boolean">
                     <description>Enable TV Show scanning</description>
                     <level>0</level>
                     <default>true</default>
                     <control type="toggle" />
                 </setting>
-                <setting id="scan_movie_sets" label="30006" help="30106" type="boolean">
+                <setting id="scan_movie_sets" label="30004" help="30104" type="boolean">
                     <description>Enable Movie Set scanning</description>
                     <level>0</level>
                     <default>true</default>
                     <control type="toggle" />
                 </setting>
-                <setting id="dry_run" label="30007" help="30107" type="boolean">
+                <setting id="dry_run" label="30005" help="30105" type="boolean">
                     <description>Simulate filling fanart artwork without writing to Kodi</description>
                     <level>0</level>
                     <default>false</default>
                     <control type="toggle" />
                 </setting>
-                <setting id="enable_logging" label="30008" help="30108" type="boolean">
+                <setting id="enable_logging" label="30006" help="30106" type="boolean">
                     <description>Enable verbose logging</description>
                     <level>0</level>
                     <default>false</default>
                     <control type="toggle" />
                 </setting>
-                <setting id="enable_contextmenu" label="30009" help="30109" type="boolean">
+                <setting id="enable_contextmenu" label="30007" help="30107" type="boolean">
                     <description>Enable context menu</description>
                     <level>0</level>
                     <default>true</default>
-                    <control type="toggle" />
-                </setting>
-                <setting id="rate_limit" label="30010" help="30110" type="boolean">
-                    <description>Enable rate limiting (implemented but never shown to user)</description>
-                    <level>4</level>
-                    <default>false</default>
                     <control type="toggle" />
                 </setting>
             </group>
