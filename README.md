@@ -52,15 +52,15 @@ All assignments reference **remote URLs** that have already been stored in the a
 
 1. The addon reads the available remote artwork URLs from the existing fanart art type.
 2. Existing `fanart<i>` entries are inspected to determine the next free slot.  
-3. Available fanart URLs are used to sequentially fill in empty 'fanart<i>', filling gaps first.
-4. If an available URL is already assigned to a 'fanart<i>' slot, it is not added again.
+3. Available fanart URLs are used to sequentially fill in empty `fanart<i>` art types, filling gaps first.
+4. If an available URL is already assigned to a `fanart<i>` slot, it is not added again.
 5. Filled in fanart slots are recorded in the run log.  
 
 ---
 
 ## Limitations
 
-- Artwork is **not downloaded**; only URLs are filled in for the 'fanart<i>' artwork of a media item.   
+- Artwork is **not downloaded**; only URLs are filled in for the `fanart<i>` artwork of a media item.   
 - The addon does not run automatically; you must trigger scans manually or via the context menu.
 
 ---

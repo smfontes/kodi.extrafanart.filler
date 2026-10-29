@@ -77,5 +77,6 @@ class WorkerFillAll(threading.Thread):
     def scan_finished(self, addon_log, processed, filled):
         addon_log.end_run(processed, filled)
         prefix = "[DRY RUN]" if xbmcaddon.Addon().getSettingBool(Setting.DRY_RUN) else ""
-        info(f"Scanned {processed[Key.MOVIE]} Movies, {processed[Key.TV]} TV Shows, and {processed[Key.SET]} Movie Sets.")
-        info(f"{prefix}Filled in {filled[Key.MOVIE]} fanarts for Movies, {filled[Key.TV]} fanarts for TV Shows, and {filled[Key.SET]} fanarts for Movie Sets.")
+        info(f"{prefix}Filled in {filled[Key.MOVIE]} fanarts for {processed[Key.MOVIE]} Movies, "
+             f"{filled[Key.TV]} fanarts for {processed[Key.TV]} TV Shows, "
+             f"and {filled[Key.SET]} fanarts for {processed[Key.SET]} Movie Sets.")

@@ -20,7 +20,7 @@ class WorkerFillSelected(threading.Thread):
         try:
             debug("Fill fanart from context menu selection: starting")
             item = {}
-            item[Key.TYPE] = xbmc.getInfoLabel('ListItem.DBTYPE')+"id"
+            item[Key.TYPE] = xbmc.getInfoLabel('ListItem.DBTYPE')+Key.ID
             item[Key.ID] = int(xbmc.getInfoLabel('ListItem.DBID'))
             item[Key.TITLE] = xbmc.getInfoLabel('ListItem.title')
             item[Key.ART] = get_item_art(item)
@@ -30,7 +30,7 @@ class WorkerFillSelected(threading.Thread):
             processed = {Key.MOVIE: 0, Key.TV: 0, Key.SET: 0}
             num_filled = fill_in_fanart(item, addon_log)
             prefix = "[DRY RUN]" if xbmcaddon.Addon().getSettingBool(Setting.DRY_RUN) else ""
-            final_msg = f"{prefix} {Localize.ARTWORK_FILLED_0.format(num_filled)}: '{item[Key.TITLE]}'"
+            final_msg = f"{prefix}{Localize.ARTWORK_FILLED_0.format(num_filled)}: '{item[Key.TITLE]}'"
             xbmcgui.Dialog().notification(Addon.NAME, final_msg, xbmcgui.NOTIFICATION_INFO, 5000)
             info(f"{prefix}Scanned {Label[item[Key.TYPE]]}: '{item[Key.TITLE]}' - filled in {num_filled} extrafanart images")
             processed[item[Key.TYPE]] = 1

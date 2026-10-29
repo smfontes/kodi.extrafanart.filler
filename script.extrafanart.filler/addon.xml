@@ -21,13 +21,9 @@
       </menu>
     </extension>
     <extension point="xbmc.addon.metadata">
-      <summary lang="en_GB">Fills in extrafanart URLs for Movies, Movie Sets, and TV shows.</summary>
-      <description lang="en_GB">
-This addon scans Movies, TV Shows, and Movie Sets and fills in the extrafanart artwork slots (fanart1, fanart2, fanart3, ...) with urls from online artwork providers. For each item, the addon queries fanart.tv and themoviedb.org using the API keys provided in the addon settings. No images are downloaded; only the URLs returned by the providers are stored in the Kodi database. You can configure the maximum number of images to fill in per item.
-A context menu option is available to fill fanart for a single Movie, TV Show, or Movie Set. 
-Fanart is used in the order returned by the providers: all available artwork from fanart.tv is used first, followed by artwork from themoviedb.org. The addon does not attempt to rate, filter, or reorder images.
-Results from online queries are cached. Once an item has been scanned, only the fanart available at the time of the original query will be used. New queries are performed only for Movies, TV Shows, and Movie Sets added since the last scan. A setting is provided to clear the cache in order to get new artwork urls for a previously scanned media item.
-</description>
+      <summary lang="en_GB">Fills extrafanart (fanart1, fanart2, …) for Movies, TV Shows, and Movie Sets.</summary>
+      <description lang="en_GB">This addon scans Movies, TV Shows, and Movie Sets and fills the extrafanart slots (fanart1, fanart2, fanart3, …). It reuses the remote fanart URLs already scraped by Kodi, copying them from the available fanart artwork into the individual fanart<i> entries. Existing extrafanart is not overwritten. The addon also provides a context menu item to fill in extrafanart for individual Movies, TV Shows, or Movie Sets.
+      </description>
       <disclaimer lang="en_GB">This addon fills in artwork URLs. It does not download images.</disclaimer>
       <platform>all</platform>
       <license>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</license>
