@@ -77,7 +77,11 @@ def fill_in_fanart(item, addon_log):
         debug(f"'{title}' no artwork found — skipping")
         addon_log.end_item(log_label, title, num_existing, 0, 0, 0)
         return 0
+    # ==== Get all the urls we don't want to add a duplicate of
     existing_urls = list(existing.values())
+    fanart = item.get(Key.ART,{}).get('fanart')
+    if fanart:
+        existing_urls.append(fanart)
     # ==== find the next empty fanart index
     slot = next_free_slot(existing)
     filled_in_count = 0
