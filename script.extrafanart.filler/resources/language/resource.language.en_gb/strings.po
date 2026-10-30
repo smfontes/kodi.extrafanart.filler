@@ -19,8 +19,8 @@ msgid "Settings"
 msgstr "Settings"
 
 msgctxt "#30100"
-msgid "Specify how ExtraFanart Filler works"
-msgstr "Specify how ExtraFanart Filler works"
+msgid "Specify options for ExtraFanart Filler"
+msgstr "Specify options for ExtraFanart Filler"
 
 msgctxt "#30001"
 msgid "Maximum extrafanart images"
@@ -67,8 +67,8 @@ msgid "Enable verbose logging"
 msgstr "Enable verbose logging"
 
 msgctxt "#30106"
-msgid "Writes detailed diagnostic information to the Kodi log."
-msgstr "Writes detailed diagnostic information to the Kodi log."
+msgid "Writes detailed processing information to the Kodi log."
+msgstr "Writes detailed processing information to the Kodi log."
 
 msgctxt "#30007"
 msgid "Enable context menu"

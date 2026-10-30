@@ -4,7 +4,7 @@ import xbmcgui
 import xbmcaddon
 
 from resources.lib.fanart import fill_in_fanart
-from resources.lib import api_kodi
+from resources.lib.api_kodi import get_movies, get_tvshows, get_moviesets
 from resources.lib.log_addon import AddonLog
 from resources.lib.shutdown import ShutdownHandler, ShutdownException
 from resources.lib.lockmanager import release_lock
@@ -16,29 +16,32 @@ class WorkerFillAll(threading.Thread):
         super().__init__()
         self.daemon = False
         self._monitor = xbmc.Monitor()
-    
+
+    def get_items(self):
+        addon = xbmcaddon.Addon()
+        scan_movies = addon.getSettingBool(Setting.SCAN_MOVIES)
+        scan_tv_shows = addon.getSettingBool(Setting.SCAN_TV_SHOWS)
+        scan_sets = addon.getSettingBool(Setting.SCAN_MOVIE_SETS)
+        items = []
+        if scan_movies:
+            items.extend(get_movies())
+        if scan_tv_shows:
+            items.extend(get_tvshows())
+        if scan_sets:
+            items.extend(get_moviesets())
+        return items
+
     def run(self):
         try:
+            debug("Fill from scan: starting")
+            # ==== Get all the media items to find fanart for
+            items = self.get_items()
             addon_log = AddonLog()
             addon_log.start_run()
-            # ==== Get the addon settings values
-            addon = xbmcaddon.Addon()
-            scan_movies = addon.getSettingBool(Setting.SCAN_MOVIES)
-            scan_tv_shows = addon.getSettingBool(Setting.SCAN_TV_SHOWS)
-            scan_sets = addon.getSettingBool(Setting.SCAN_MOVIE_SETS)
-            debug("Starting extrafanart scan")
             # ==== Initialize counters
             processed = {Key.MOVIE: 0, Key.TV: 0, Key.SET: 0}
             filled = {Key.MOVIE: 0, Key.TV: 0, Key.SET: 0}
             total_processed = 0
-            # ==== Get all the media items to find fanart for
-            items = []
-            if scan_movies:
-                items.extend(api_kodi.get_movies())
-            if scan_tv_shows:
-                items.extend(api_kodi.get_tvshows())
-            if scan_sets:
-                items.extend(api_kodi.get_moviesets())
             total_items = len(items)
             try:
                 # ==== Fill in fanart for each media item
@@ -61,18 +64,17 @@ class WorkerFillAll(threading.Thread):
                 progress.close()
                 final_msg = Localize.ARTWORK_FILLED_0.format(filled[Key.MOVIE]+filled[Key.TV]+filled[Key.SET])
                 xbmcgui.Dialog().notification(Addon.NAME, final_msg, xbmcgui.NOTIFICATION_INFO, 5000)
+                xbmc.sleep(50)
                 self.scan_finished(addon_log, processed, filled) 
                 debug("Extrafanart scan completed")
         except ShutdownException:
             pass
         except Exception:
             import traceback
-            debug("ExtraFanart scan: crashed") 
-            tb = traceback.format_exc()
-            error(f" crashed:\n{tb}")
+            error(f"Fill from scan:  crashed:\n{traceback.format_exc()}")
         finally:
             release_lock()
-            debug("ExtraFanart scan: lock released") 
+            debug("Fill from scan: ended - lock released") 
 
     def scan_finished(self, addon_log, processed, filled):
         addon_log.end_run(processed, filled)

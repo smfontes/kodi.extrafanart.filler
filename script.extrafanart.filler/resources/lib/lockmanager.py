@@ -15,6 +15,7 @@ def acquire_lock(show_notification=True):
     if xbmcvfs.exists(LOCK_FILE):
         if show_notification:
             xbmcgui.Dialog().notification(Addon.NAME, Localize.OPERATION_RUNNING, xbmcgui.NOTIFICATION_WARNING, 3000)
+            xbmc.sleep(50)
         return False
     f = xbmcvfs.File(LOCK_FILE, 'w')
     f.write(b"locked\n")

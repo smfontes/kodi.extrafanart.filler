@@ -1,7 +1,7 @@
 import urllib
 import xbmcaddon
 
-from resources.lib import api_kodi
+from resources.lib.api_kodi import get_available_fanart, set_movie_art, set_tvshow_art, set_movieset_art
 from resources.lib.shutdown import ShutdownHandler
 from resources.lib.constants import Key, Setting, Label
 from resources.lib.log_kodi import debug, info, warn, error
@@ -45,17 +45,6 @@ def unwrap_kodi_url(url):
         return urllib.parse.unquote(url)
     return url
 
-def get_item_art(item):
-    # ==== Get the current art for an item so we don't duplicate it
-    art = {}
-    if item[Key.TYPE] == Key.MOVIE:
-        art = api_kodi.get_movie_art(item[Key.ID])
-    elif item[Key.TYPE] == Key.TV:
-        art = api_kodi.get_tvshow_art(item[Key.ID])
-    elif item[Key.TYPE] == Key.SET:
-        art = api_kodi.get_movieset_art(item[Key.ID])
-    return art
-
 def fill_in_fanart(item, addon_log):
     title = item[Key.TITLE]
     log_label = Label[item[Key.TYPE]].upper()
@@ -72,7 +61,7 @@ def fill_in_fanart(item, addon_log):
         return 0
     remaining_slots = max_slots - num_existing
     # ==== Get all the available fanarts
-    candidates = api_kodi.get_available_fanart(item)         
+    candidates = get_available_fanart(item)         
     if not candidates:
         debug(f"'{title}' no artwork found — skipping")
         addon_log.end_item(log_label, title, num_existing, 0, 0, 0)
@@ -102,11 +91,11 @@ def fill_in_fanart(item, addon_log):
         else:
             # ==== Fill the fanart slot with the url
             if item[Key.TYPE] == Key.MOVIE:
-                api_kodi.set_movie_art(item[Key.ID], {slot_name: url})
+                set_movie_art(item[Key.ID], {slot_name: url})
             elif item[Key.TYPE] == Key.TV:
-                api_kodi.set_tvshow_art(item[Key.ID], {slot_name: url})
+                set_tvshow_art(item[Key.ID], {slot_name: url})
             elif item[Key.TYPE] == Key.SET:
-                api_kodi.set_movieset_art(item[Key.ID], {slot_name: url})
+                set_movieset_art(item[Key.ID], {slot_name: url})
             debug(f"{title} filled in {slot_name}={unwrap_kodi_url(url)}")
         addon_log.fanart_filled(slot_name, unwrap_kodi_url(url)) 
         existing[slot_name] = url
