@@ -62,7 +62,8 @@ class WorkerFillAll(threading.Thread):
             finally:
                 # ==== Finished all of the media items
                 progress.close()
-                final_msg = Localize.ARTWORK_FILLED_0.format(filled[Key.MOVIE]+filled[Key.TV]+filled[Key.SET])
+                prefix = "[DRY RUN]" if xbmcaddon.Addon().getSettingBool(Setting.DRY_RUN) else ""
+                final_msg = f"{prefix}{Localize.ARTWORK_FILLED_0.format(filled[Key.MOVIE]+filled[Key.TV]+filled[Key.SET])}"
                 xbmcgui.Dialog().notification(Addon.NAME, final_msg, xbmcgui.NOTIFICATION_INFO, 5000)
                 xbmc.sleep(50)
                 self.scan_finished(addon_log, processed, filled) 
